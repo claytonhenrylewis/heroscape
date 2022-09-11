@@ -126,8 +126,13 @@
         
         <script type="text/javascript">
             $( document ).ready(function() {
+                var mapCombinations = [];
+                var collection = [];
+                var mapPool = [];
+                
                 $("#compute").click(function() {
-                    var collection = [];
+                    mapCombinations = [[]];
+                    collection = [];
                     collection["ROTV"] = parseInt($("#ROTV").val());
                     collection["SOTM"] = parseInt($("#SOTM").val());
                     collection["BFTU"] = parseInt($("#BFTU").val());
@@ -139,7 +144,7 @@
                     collection["MTCB"] = parseInt($("#MTCB").val());
                     console.log(collection);
                     
-                    var mapPool = [];                    
+                    mapPool = [];                    
                     var mapPoolEntry = $("#map-pool").val();
                     var mapPoolList = mapPoolEntry.split("\n");
                     for (const map of mapPoolList) {
@@ -159,9 +164,39 @@
                         mapPool.push(mapObject);
                     }
                     console.log(mapPool);
+                    
+                    CheckMaps(collection,0,0);
+                    console.log(mapCombinations);
                 });
                 
-                
+                function CheckMaps(remainingCollection,mapPoolIndex,mapCombinationIndex) {
+                    // Can we build this map?
+                    var canBuild = true;
+                    for (const set in mapPool[mapPoolIndex].Sets) {
+                        if (remainingCollection[set] < mapPool[mapPoolIndex]["Sets"][set]) {
+                            canBuild = false;
+                        }
+                    }
+                    
+                    // No
+                    if (!canBuild) {
+                        CheckMaps(remainingCollection,mapPoolIndex+1,mapCombinationIndex);
+                    }
+                    
+                    // Yes
+                    
+                    // Do build it
+                    mapCombinations[mapCombinationIndex].push(mapPool[mapPoolIndex].Name);
+                    var newRemainingCollection = Array.from(remainingCollection);
+                    for (const set in mapPool[mapPoolIndex].Sets) {
+                        newRemainingCollection[set] -= mapPool[mapPoolIndex]["Sets"][set];
+                    }
+                    CheckMaps(newRemainingCollection,mapPoolIndex,mapCombinationIndex);
+                    
+                    // Don't build it
+                    mapCombinations[mapCombinationIndex+1] = [];
+                    CheckMaps(remainingCollection,mapPoolIndex+1,mapCombinationIndex+1);                    
+                }
             });
         </script>
     </body>
