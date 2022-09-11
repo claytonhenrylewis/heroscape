@@ -126,7 +126,24 @@
         <script type="text/javascript">
             $( document ).ready(function() {
                 $("#compute").click(function() {
-                    var mapPool = $("#map-pool").val().split("\n");
+                    var mapPool = [];
+                    var mapPoolEntry = $("#map-pool").val();
+                    var mapPoolList = mapPoolEntry.split("\n");
+                    console.log(mapPoolList);
+                    for (const map of mapPoolList) {
+                        var mapObject = {};
+                        var mapTokens = map.split(":");
+                        var mapName = mapTokens[0].trim();
+                        var mapSets = mapTokens[1].trim();
+                        var mapSetsList = mapSets.split(",");
+                        for (const set of mapSetsList) {
+                            var setTokens = set.split(" ");
+                            var setName = setTokens[1].trim();
+                            var setQuant = parseInt(setTokens[0]);
+                            mapObject[setName] = setQuant;
+                        }
+                        mapPool.push(mapObject);
+                    }
                     console.log(mapPool);
                 });
             });
