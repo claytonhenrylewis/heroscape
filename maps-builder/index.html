@@ -177,7 +177,7 @@
                     
                     $("#results-list").empty();
                     for (const combo of mapCombinations) {
-                        var comboString = combo.join(", ");
+                        var comboString = combo.length + " maps: " + combo.join(", ");
                         $("#results-list").append('<li>' + comboString + '</li>');
                     }
                 });
