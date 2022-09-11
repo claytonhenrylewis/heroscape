@@ -130,45 +130,6 @@
                 var collection = [];
                 var mapPool = [];
                 
-                function CheckMaps(remainingCollection,mapPoolIndex,mapCombinationIndex) {
-                    console.log("Check maps:");
-                    console.log(remainingCollection);
-                    console.log(mapPoolIndex);
-                    console.log(mapCombinationIndex);
-                    
-                    // Gone through the whole list?
-                    if (mapPoolIndex >= mapPool.length) {
-                        return;
-                    }
-                    
-                    // Can we build this map?
-                    var canBuild = true;
-                    for (const set in mapPool[mapPoolIndex].Sets) {
-                        if (remainingCollection[set] < mapPool[mapPoolIndex]["Sets"][set]) {
-                            canBuild = false;
-                        }
-                    }
-                    
-                    // No
-                    if (!canBuild) {
-                        CheckMaps(remainingCollection,mapPoolIndex+1,mapCombinationIndex);
-                    }
-                    
-                    // Yes
-                    
-                    // Do build it
-                    mapCombinations[mapCombinationIndex].push(mapPool[mapPoolIndex].Name);
-                    var newRemainingCollection = Array.from(remainingCollection);
-                    for (const set in mapPool[mapPoolIndex].Sets) {
-                        newRemainingCollection[set] -= mapPool[mapPoolIndex]["Sets"][set];
-                    }
-                    CheckMaps(newRemainingCollection,mapPoolIndex,mapCombinationIndex);
-                    
-                    // Don't build it
-                    mapCombinations[mapCombinationIndex+1] = [];
-                    CheckMaps(remainingCollection,mapPoolIndex+1,mapCombinationIndex+1);                    
-                }
-                
                 $("#compute").click(function() {
                     mapCombinations = [[]];
                     collection = [];
@@ -207,6 +168,46 @@
                     CheckMaps(collection,0,0);
                     console.log(mapCombinations);
                 });
+                
+                function CheckMaps(remainingCollection,mapPoolIndex,mapCombinationIndex) {
+                    console.log("Check maps:");
+                    console.log(remainingCollection);
+                    console.log(mapPoolIndex);
+                    console.log(mapCombinationIndex);
+                    
+                    // Gone through the whole list?
+                    if (mapPoolIndex >= mapPool.length) {
+                        return;
+                    }
+                    
+                    // Can we build this map?
+                    var canBuild = true;
+                    for (const set in mapPool[mapPoolIndex].Sets) {
+                        if (remainingCollection[set] < mapPool[mapPoolIndex]["Sets"][set]) {
+                            canBuild = false;
+                        }
+                    }
+                    
+                    // No
+                    if (!canBuild) {
+                        CheckMaps(remainingCollection,mapPoolIndex+1,mapCombinationIndex);
+                        return;
+                    }
+                    
+                    // Yes
+                    
+                    // Do build it
+                    mapCombinations[mapCombinationIndex].push(mapPool[mapPoolIndex].Name);
+                    var newRemainingCollection = Array.from(remainingCollection);
+                    for (const set in mapPool[mapPoolIndex].Sets) {
+                        newRemainingCollection[set] -= mapPool[mapPoolIndex]["Sets"][set];
+                    }
+                    CheckMaps(newRemainingCollection,mapPoolIndex,mapCombinationIndex);
+                    
+                    // Don't build it
+                    mapCombinations[mapCombinationIndex+1] = [];
+                    CheckMaps(remainingCollection,mapPoolIndex+1,mapCombinationIndex+1);                    
+                }
             });
         </script>
     </body>
