@@ -198,11 +198,6 @@
                     
                     // Yes
                     
-                    // Don't build it
-                    var copyRemainingCollection = {};
-                    copyRemainingCollection = Object.assign(copyRemainingCollection, remainingCollection);
-                    CheckMaps(copyRemainingCollection,mapPoolIndex+1,mapCombinationIndex,mapCombination);
-                    
                     // Do build it
                     var newMapCombination = [];
                     newMapCombination = Array.from(mapCombination);
@@ -214,6 +209,11 @@
                         newRemainingCollection[set] -= mapPool[mapPoolIndex]["Sets"][set];
                     }
                     CheckMaps(newRemainingCollection,mapPoolIndex,mapCombinationIndex+1,newMapCombination);
+                    
+                    // Don't build it
+                    var copyRemainingCollection = {};
+                    copyRemainingCollection = Object.assign(copyRemainingCollection, remainingCollection);
+                    CheckMaps(copyRemainingCollection,mapPoolIndex+1,mapCombinationIndex,mapCombination);
                 }
             });
         </script>
