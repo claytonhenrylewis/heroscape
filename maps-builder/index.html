@@ -147,6 +147,7 @@
                         var mapTokens = map.split(":");
                         var mapName = mapTokens[0].trim();
                         mapObject.Name = mapName;
+                        mapObject.Sets = {};
                         var mapSets = mapTokens[1].trim();
                         var mapSetsList = mapSets.split(",");
                         for (const set of mapSetsList) {
