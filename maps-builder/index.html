@@ -126,7 +126,7 @@
         <script type="text/javascript">
             $( document ).ready(function() {
                 $("#compute").click(function() {
-                    var mapPool = $("#map-pool").val();
+                    var mapPool = $("#map-pool").val().split("\n");
                     console.log(mapPool);
                 });
             });
