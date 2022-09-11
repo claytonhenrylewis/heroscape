@@ -126,7 +126,19 @@
         <script type="text/javascript">
             $( document ).ready(function() {
                 $("#compute").click(function() {
-                    var mapPool = [];
+                    var collection = [];
+                    collection["ROTV"] = parseInt($("#ROTV").val());
+                    collection["SOTM"] = parseInt($("#SOTM").val());
+                    collection["BFTU"] = parseInt($("#BFTU").val());
+                    collection["RTTFF"] = parseInt($("#RTTFF").val());
+                    collection["VW"] = parseInt($("#VW").val());
+                    collection["TT"] = parseInt($("#TT").val());
+                    collection["FOTA"] = parseInt($("#FOTA").val());
+                    collection["TJ"] = parseInt($("#TJ").val());
+                    collection["MTCB"] = parseInt($("#MTCB").val());
+                    console.log(collection);
+                    
+                    var mapPool = [];                    
                     var mapPoolEntry = $("#map-pool").val();
                     var mapPoolList = mapPoolEntry.split("\n");
                     console.log(mapPoolList);
