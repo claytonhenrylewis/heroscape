@@ -214,7 +214,7 @@
                     for (const set in mapPool[mapPoolIndex].Sets) {
                         newRemainingCollection[set] -= mapPool[mapPoolIndex]["Sets"][set];
                     }
-                    CheckMaps(newRemainingCollection,mapPoolIndex,mapCombinationIndex,mapCombination);
+                    CheckMaps(newRemainingCollection,mapPoolIndex,mapCombinationIndex,copyMapCombination);
                 }
             });
         </script>
