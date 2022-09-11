@@ -198,8 +198,10 @@
                     // Yes
                     
                     // Do build it
-                    mapCombination.push(mapPool[mapPoolIndex].Name);
-                    mapCombinations[mapCombinationIndex] = mapCombination;
+                    var copyMapCombination = [];
+                    copyMapCombination = Array.from(mapCombination);
+                    copyMapCombination.push(mapPool[mapPoolIndex].Name);
+                    mapCombinations[mapCombinationIndex] = copyMapCombination;
                     var newRemainingCollection = {};
                     newRemainingCollection = Object.assign(newRemainingCollection, remainingCollection);
                     for (const set in mapPool[mapPoolIndex].Sets) {
@@ -211,9 +213,7 @@
                     mapCombinations[mapCombinationIndex+1] = [];
                     var copyRemainingCollection = {};
                     copyRemainingCollection = Object.assign(copyRemainingCollection, remainingCollection);
-                    var copyMapCombination = [];
-                    copyMapCombination = Array.from(mapCombination);
-                    CheckMaps(copyRemainingCollection,mapPoolIndex+1,mapCombinationIndex+1,copyMapCombination);                    
+                    CheckMaps(copyRemainingCollection,mapPoolIndex+1,mapCombinationIndex+1,mapCombination);                    
                 }
             });
         </script>
