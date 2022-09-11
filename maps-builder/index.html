@@ -207,7 +207,9 @@
                     
                     // Don't build it
                     mapCombinations[mapCombinationIndex+1] = [];
-                    CheckMaps(remainingCollection,mapPoolIndex+1,mapCombinationIndex+1);                    
+                    var copyRemainingCollection = {};
+                    copyRemainingCollection = Object.assign(copyRemainingCollection, remainingCollection);
+                    CheckMaps(copyRemainingCollection,mapPoolIndex+1,mapCombinationIndex+1);                    
                 }
             });
         </script>
