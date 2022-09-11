@@ -166,7 +166,10 @@
                     console.log(mapPool);
                     
                     var mapCombination = [];
-                    CheckMaps(collection,0,0,mapCombination);
+                    CheckMaps(collection,0,mapCombination);
+                    mapCombinations.sort(function (a, b) {
+                        return b.length - a.length;
+                    });
                     console.log(mapCombinations);
                 });
                 
