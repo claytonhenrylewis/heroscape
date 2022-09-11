@@ -153,7 +153,7 @@
                             var setTokens = set.trim().split(" ");
                             var setName = setTokens[1].trim().toUpperCase();
                             var setQuant = parseInt(setTokens[0]);
-                            mapObject.Sets.[setName] = setQuant;
+                            mapObject["Sets"][setName] = setQuant;
                         }
                         mapPool.push(mapObject);
                     }
