@@ -198,7 +198,9 @@
                     
                     // Do build it
                     mapCombinations[mapCombinationIndex].push(mapPool[mapPoolIndex].Name);
-                    var newRemainingCollection = Array.from(remainingCollection);
+                    var newRemainingCollection = remainingCollection.map(function(arr) {
+                        return arr.slice();
+                    });
                     for (const set in mapPool[mapPoolIndex].Sets) {
                         newRemainingCollection[set] -= mapPool[mapPoolIndex]["Sets"][set];
                     }
