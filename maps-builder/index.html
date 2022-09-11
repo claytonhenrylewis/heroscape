@@ -134,11 +134,13 @@
                         var mapObject = {};
                         var mapTokens = map.split(":");
                         var mapName = mapTokens[0].trim();
+                        mapObject.Name = mapName;
                         var mapSets = mapTokens[1].trim();
                         var mapSetsList = mapSets.split(",");
                         for (const set of mapSetsList) {
+                            console.log(set);
                             var setTokens = set.split(" ");
-                            var setName = setTokens[1].trim();
+                            var setName = setTokens[1].trim().toUpperCase();
                             var setQuant = parseInt(setTokens[0]);
                             mapObject[setName] = setQuant;
                         }
