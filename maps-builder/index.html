@@ -139,7 +139,7 @@
                         var mapSetsList = mapSets.split(",");
                         for (const set of mapSetsList) {
                             console.log(set);
-                            var setTokens = set.split(" ");
+                            var setTokens = set.trim().split(" ");
                             var setName = setTokens[1].trim().toUpperCase();
                             var setQuant = parseInt(setTokens[0]);
                             mapObject[setName] = setQuant;
