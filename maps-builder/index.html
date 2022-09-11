@@ -125,7 +125,10 @@
         
         <script type="text/javascript">
             $( document ).ready(function() {
-                console.log( "ready!" );
+                $("#compute").click(function() {
+                    var mapPool = $("map-pool").val();
+                    console.log(mapPool);
+                });
             });
         </script>
     </body>
