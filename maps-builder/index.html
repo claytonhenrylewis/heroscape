@@ -170,6 +170,11 @@
                 });
                 
                 function CheckMaps(remainingCollection,mapPoolIndex,mapCombinationIndex) {
+                    // Gone through the whole list?
+                    if (mapPoolIndex >= mapPool.length) {
+                        return;
+                    }
+                    
                     // Can we build this map?
                     var canBuild = true;
                     for (const set in mapPool[mapPoolIndex].Sets) {
