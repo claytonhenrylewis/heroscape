@@ -12,7 +12,9 @@
                 <h1>Maps Builder</h1>
             </header>
 
-            <h2>Collection</h2>
+            <div class="row m-3">
+                <h2>Collection</h2>
+            </div>
 
             <div class="row m-3">
                 <div class="col-sm-1">
@@ -95,9 +97,9 @@
                 </div>
             </div>
             
-            <h2>Map Pool</h2>
-            
             <div class="row m-3">
+                <h2>Map Pool</h2>
+                
                 <div class="col-sm-4">
                     <p>
                         <label for="map-pool"><strong>Example: </strong>Highways and Dieways: 1 RotV, 2 RttFF</label>
@@ -105,6 +107,15 @@
                     <textarea id="map-pool" name="map-pool" class="form-control" rows="12"></textarea>
                 </div>
             </div>
+            
+            <div class="row m-3">
+                <button type="button" id="compute" class="btn btn-primary">Compute</button>
+            </div>
+            
+            <div class="row m-3">
+                <h2>Results</h2>
+            </div>
+            
         </div>
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
