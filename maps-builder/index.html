@@ -170,6 +170,11 @@
                 });
                 
                 function CheckMaps(remainingCollection,mapPoolIndex,mapCombinationIndex) {
+                    console.log("Check maps:");
+                    console.log(remainingCollection);
+                    console.log(mapPoolIndex);
+                    console.log(mapCombinationIndex);
+                    
                     // Gone through the whole list?
                     if (mapPoolIndex >= mapPool.length) {
                         return;
