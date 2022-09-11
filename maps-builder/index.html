@@ -130,45 +130,6 @@
                 var collection = [];
                 var mapPool = [];
                 
-                $("#compute").click(function() {
-                    mapCombinations = [[]];
-                    collection = [];
-                    collection["ROTV"] = parseInt($("#ROTV").val());
-                    collection["SOTM"] = parseInt($("#SOTM").val());
-                    collection["BFTU"] = parseInt($("#BFTU").val());
-                    collection["RTTFF"] = parseInt($("#RTTFF").val());
-                    collection["VW"] = parseInt($("#VW").val());
-                    collection["TT"] = parseInt($("#TT").val());
-                    collection["FOTA"] = parseInt($("#FOTA").val());
-                    collection["TJ"] = parseInt($("#TJ").val());
-                    collection["MTCB"] = parseInt($("#MTCB").val());
-                    console.log(collection);
-                    
-                    mapPool = [];                    
-                    var mapPoolEntry = $("#map-pool").val();
-                    var mapPoolList = mapPoolEntry.split("\n");
-                    for (const map of mapPoolList) {
-                        var mapObject = {};
-                        var mapTokens = map.split(":");
-                        var mapName = mapTokens[0].trim();
-                        mapObject.Name = mapName;
-                        mapObject.Sets = {};
-                        var mapSets = mapTokens[1].trim();
-                        var mapSetsList = mapSets.split(",");
-                        for (const set of mapSetsList) {
-                            var setTokens = set.trim().split(" ");
-                            var setName = setTokens[1].trim().toUpperCase();
-                            var setQuant = parseInt(setTokens[0]);
-                            mapObject["Sets"][setName] = setQuant;
-                        }
-                        mapPool.push(mapObject);
-                    }
-                    console.log(mapPool);
-                    
-                    CheckMaps(collection,0,0);
-                    console.log(mapCombinations);
-                });
-                
                 function CheckMaps(remainingCollection,mapPoolIndex,mapCombinationIndex) {
                     console.log("Check maps:");
                     console.log(remainingCollection);
@@ -207,6 +168,45 @@
                     mapCombinations[mapCombinationIndex+1] = [];
                     CheckMaps(remainingCollection,mapPoolIndex+1,mapCombinationIndex+1);                    
                 }
+                
+                $("#compute").click(function() {
+                    mapCombinations = [[]];
+                    collection = [];
+                    collection["ROTV"] = parseInt($("#ROTV").val());
+                    collection["SOTM"] = parseInt($("#SOTM").val());
+                    collection["BFTU"] = parseInt($("#BFTU").val());
+                    collection["RTTFF"] = parseInt($("#RTTFF").val());
+                    collection["VW"] = parseInt($("#VW").val());
+                    collection["TT"] = parseInt($("#TT").val());
+                    collection["FOTA"] = parseInt($("#FOTA").val());
+                    collection["TJ"] = parseInt($("#TJ").val());
+                    collection["MTCB"] = parseInt($("#MTCB").val());
+                    console.log(collection);
+                    
+                    mapPool = [];                    
+                    var mapPoolEntry = $("#map-pool").val();
+                    var mapPoolList = mapPoolEntry.split("\n");
+                    for (const map of mapPoolList) {
+                        var mapObject = {};
+                        var mapTokens = map.split(":");
+                        var mapName = mapTokens[0].trim();
+                        mapObject.Name = mapName;
+                        mapObject.Sets = {};
+                        var mapSets = mapTokens[1].trim();
+                        var mapSetsList = mapSets.split(",");
+                        for (const set of mapSetsList) {
+                            var setTokens = set.trim().split(" ");
+                            var setName = setTokens[1].trim().toUpperCase();
+                            var setQuant = parseInt(setTokens[0]);
+                            mapObject["Sets"][setName] = setQuant;
+                        }
+                        mapPool.push(mapObject);
+                    }
+                    console.log(mapPool);
+                    
+                    CheckMaps(collection,0,0);
+                    console.log(mapCombinations);
+                });
             });
         </script>
     </body>
