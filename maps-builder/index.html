@@ -116,6 +116,7 @@
             
             <div class="row m-3">
                 <h2>Results</h2>
+                <p id="results"></p>
             </div>
             
         </div>
@@ -141,7 +142,6 @@
                     var mapPool = [];                    
                     var mapPoolEntry = $("#map-pool").val();
                     var mapPoolList = mapPoolEntry.split("\n");
-                    console.log(mapPoolList);
                     for (const map of mapPoolList) {
                         var mapObject = {};
                         var mapTokens = map.split(":");
@@ -153,12 +153,14 @@
                             var setTokens = set.trim().split(" ");
                             var setName = setTokens[1].trim().toUpperCase();
                             var setQuant = parseInt(setTokens[0]);
-                            mapObject[setName] = setQuant;
+                            mapObject.Sets.[setName] = setQuant;
                         }
                         mapPool.push(mapObject);
                     }
                     console.log(mapPool);
                 });
+                
+                
             });
         </script>
     </body>
