@@ -165,11 +165,12 @@
                     }
                     console.log(mapPool);
                     
-                    CheckMaps(collection,0,0);
+                    var mapCombination = [];
+                    CheckMaps(collection,0,0,mapCombination);
                     console.log(mapCombinations);
                 });
                 
-                function CheckMaps(remainingCollection,mapPoolIndex,mapCombinationIndex) {
+                function CheckMaps(remainingCollection,mapPoolIndex,mapCombinationIndex,mapCombination) {
                     console.log("Check maps:");
                     console.log(remainingCollection);
                     console.log(mapPoolIndex);
@@ -190,26 +191,29 @@
                     
                     // No
                     if (!canBuild) {
-                        CheckMaps(remainingCollection,mapPoolIndex+1,mapCombinationIndex);
+                        CheckMaps(remainingCollection,mapPoolIndex+1,mapCombinationIndex,mapCombination);
                         return;
                     }
                     
                     // Yes
                     
                     // Do build it
-                    mapCombinations[mapCombinationIndex].push(mapPool[mapPoolIndex].Name);
+                    mapCombination.push(mapPool[mapPoolIndex].Name);
+                    mapCombinations[mapCombinationIndex] = mapCombination;
                     var newRemainingCollection = {};
                     newRemainingCollection = Object.assign(newRemainingCollection, remainingCollection);
                     for (const set in mapPool[mapPoolIndex].Sets) {
                         newRemainingCollection[set] -= mapPool[mapPoolIndex]["Sets"][set];
                     }
-                    CheckMaps(newRemainingCollection,mapPoolIndex,mapCombinationIndex);
+                    CheckMaps(newRemainingCollection,mapPoolIndex,mapCombinationIndex,mapCombination);
                     
                     // Don't build it
                     mapCombinations[mapCombinationIndex+1] = [];
                     var copyRemainingCollection = {};
                     copyRemainingCollection = Object.assign(copyRemainingCollection, remainingCollection);
-                    CheckMaps(copyRemainingCollection,mapPoolIndex+1,mapCombinationIndex+1);                    
+                    var copyMapCombination = [];
+                    copyMapCombination = Array.from(mapCombination);
+                    CheckMaps(copyRemainingCollection,mapPoolIndex+1,mapCombinationIndex+1,copyMapCombination);                    
                 }
             });
         </script>
