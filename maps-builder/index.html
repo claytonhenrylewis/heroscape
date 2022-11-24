@@ -217,9 +217,9 @@
                     CheckMaps(newRemainingCollection,mapPoolIndex,newMapCombination);
                     
                     // Don't build it
-                    var copyRemainingCollection = {};
-                    copyRemainingCollection = Object.assign(copyRemainingCollection, remainingCollection);
-                    CheckMaps(copyRemainingCollection,mapPoolIndex+1,mapCombination);
+                    // var copyRemainingCollection = {};
+                    // copyRemainingCollection = Object.assign(copyRemainingCollection, remainingCollection);
+                    CheckMaps(remainingCollection,mapPoolIndex+1,mapCombination);
                 }
             });
         </script>
